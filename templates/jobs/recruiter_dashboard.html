@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}Recruiter dashboard · CareerConnect{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4"><div><p class="text-primary fw-semibold mb-1">RECRUITER WORKSPACE</p><h1 class="h2 mb-0">Hello, {{ user.profile.full_name|default:user.username }}</h1></div><a href="{% url 'job_create' %}" class="btn btn-primary">+ Post a job</a></div>
+<h2 class="h4 mb-3">Your job listings</h2><div class="row g-3">
+{% for job in jobs %}<div class="col-lg-6"><div class="card job-card"><div class="card-body">
+<div class="d-flex justify-content-between gap-2"><h3 class="h5">{{ job.title }}</h3>{% if job.is_active %}<span class="badge text-bg-success align-self-start">Active</span>{% else %}<span class="badge text-bg-secondary align-self-start">Closed</span>{% endif %}</div>
+<p class="text-muted">{{ job.company }} · {{ job.location }}</p><p>{{ job.applications.count }} application{{ job.applications.count|pluralize }}</p>
+<a class="btn btn-sm btn-outline-primary" href="{% url 'applicants' job.pk %}">View applicants</a> <a class="btn btn-sm btn-outline-secondary" href="{% url 'job_edit' job.pk %}">Edit listing</a>
+</div></div></div>{% empty %}<div class="col-12"><div class="empty-state"><p>You haven't posted any jobs yet.</p><a class="btn btn-primary" href="{% url 'job_create' %}">Post your first job</a></div></div>{% endfor %}
+</div>{% endblock %}

@@ -1,0 +1,12 @@
+body { background: #f6f8fc; color: #172033; min-height: 100vh; }
+.navbar-brand { letter-spacing: -.3px; }
+.hero { color: white; background: linear-gradient(125deg, #182a63 0%, #315edb 58%, #5b8def 100%); box-shadow: 0 12px 35px rgba(39, 75, 170, .16); }
+.hero .form-control, .hero .form-select { border: 0; }
+.job-card { border: 1px solid #e6eaf2; border-radius: 16px; transition: transform .15s ease, box-shadow .15s ease; }
+.job-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(25, 40, 80, .08); }
+.form-card { max-width: 500px; background: #fff; border: 1px solid #e6eaf2; border-radius: 18px; padding: 28px; box-shadow: 0 12px 36px rgba(25, 40, 80, .05); }
+.wide-card { max-width: 760px; }
+.empty-state { background: white; border: 1px dashed #cbd4e4; border-radius: 16px; padding: 36px; text-align: center; color: #64708a; }
+.preline { white-space: pre-line; }
+.table thead th { background: #f8f9fc; color: #5d6880; font-size: .84rem; white-space: nowrap; }
+footer { background: #fff; }

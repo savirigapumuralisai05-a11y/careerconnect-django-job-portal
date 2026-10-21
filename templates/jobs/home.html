@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% block title %}Find jobs and internships · CareerConnect{% endblock %}
+{% block content %}
+<section class="hero rounded-4 p-4 p-md-5 mb-4">
+  <span class="badge text-bg-light mb-3">Your next opportunity starts here</span>
+  <h1 class="display-5 fw-bold">Find work that moves you forward.</h1>
+  <p class="lead mb-4">Discover entry-level jobs and internships, then track every application.</p>
+  <form method="get" class="row g-2">
+    <div class="col-md-7"><input class="form-control form-control-lg" name="q" value="{{ query }}" placeholder="Role, company, skill or location"></div>
+    <div class="col-md-3"><select class="form-select form-select-lg" name="type"><option value="">All types</option><option value="internship" {% if job_type == 'internship' %}selected{% endif %}>Internship</option><option value="full_time" {% if job_type == 'full_time' %}selected{% endif %}>Full-time</option><option value="part_time" {% if job_type == 'part_time' %}selected{% endif %}>Part-time</option></select></div>
+    <div class="col-md-2"><button class="btn btn-primary btn-lg w-100">Search</button></div>
+  </form>
+</section>
+<div class="d-flex justify-content-between align-items-center mb-3"><h2 class="h4 mb-0">Latest opportunities</h2><span class="text-muted small">{{ jobs|length }} result{{ jobs|length|pluralize }}</span></div>
+<div class="row g-3">
+{% for job in jobs %}
+  <div class="col-md-6 col-lg-4"><div class="card job-card h-100"><div class="card-body">
+    <span class="badge text-bg-primary-subtle text-primary-emphasis mb-2">{{ job.get_job_type_display }}</span>
+    <h3 class="h5"><a class="text-decoration-none text-dark" href="{% url 'job_detail' job.pk %}">{{ job.title }}</a></h3>
+    <p class="fw-semibold mb-1">{{ job.company }}</p><p class="text-muted small">📍 {{ job.location }}</p>
+    <p class="text-muted">{{ job.description|truncatewords:22 }}</p>
+    <div class="d-flex justify-content-between align-items-center"><small class="text-muted">{{ job.created_at|date:"d M Y" }}</small><a href="{% url 'job_detail' job.pk %}" class="btn btn-outline-primary btn-sm">View details</a></div>
+  </div></div></div>
+{% empty %}<div class="col-12"><div class="empty-state"><h3 class="h5">No jobs found yet</h3><p class="mb-0">Try a different search, or register as a recruiter to post a demo opportunity.</p></div></div>{% endfor %}
+</div>{% endblock %}

@@ -1,7 +1,8 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = "dev-only-change-this-before-deployment"
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-change-this-before-deployment")
 DEBUG = False
 ALLOWED_HOSTS = [
     "careerconnect-django-job-portal.onrender.com",
